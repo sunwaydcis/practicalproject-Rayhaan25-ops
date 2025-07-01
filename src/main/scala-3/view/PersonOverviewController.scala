@@ -24,6 +24,8 @@ class PersonOverviewController():
   private var cityLabel: Label = null
   @FXML
   private var birthdayLabel: Label = null
+  @FXML
+  private var mytext : Textfield= null
   // initialize Table View display contents model
   def initialize() =
     personTable.items = MainApp.personData

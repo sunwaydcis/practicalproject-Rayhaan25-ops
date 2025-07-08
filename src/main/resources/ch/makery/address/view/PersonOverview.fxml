@@ -62,12 +62,12 @@
                         </GridPane>
                         <ButtonBar layoutX="151.0" layoutY="228.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
                             <buttons>
-                                <Button mnemonicParsing="false" text="New..." />
-                                <Button mnemonicParsing="false" text="Edit..." />
+                                <Button mnemonicParsing="false" onAction="#handleNewPerson" text="New..." />
+                                <Button mnemonicParsing="false" onAction="#handleEditPerson" text="Edit..." />
                                 <Button mnemonicParsing="false" onAction="#handleDeletePerson" text="Delete" />
                             </buttons>
                         </ButtonBar>
-                  <TextField layoutX="60.0" layoutY="233.0" />
+                  <TextField fx:id="mytext" layoutX="60.0" layoutY="233.0" />
                     </children>
                 </AnchorPane>
             </items>

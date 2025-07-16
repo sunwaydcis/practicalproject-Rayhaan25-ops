@@ -1,7 +1,7 @@
 package ch.makery.address
 
 import ch.makery.address.model.Person
-import ch.makery.address.view.PersonEditDialogController
+import ch.makery.address.view.{PersonEditDialogController, PersonOverviewController}
 import javafx.fxml.FXMLLoader
 import javafx.scene as jfxs
 import scalafx.Includes.*
@@ -10,12 +10,15 @@ import scalafx.application.JFXApp3.PrimaryStage
 import scalafx.beans.property.StringProperty
 import scalafx.collections.ObservableBuffer
 import scalafx.scene.Scene
+import scalafx.scene.image.Image
 import scalafx.stage.{Modality, Stage}
 
 object MainApp extends JFXApp3:
 
   //Window Root Pane
   var roots: Option[scalafx.scene.layout.BorderPane] = None
+  var cssResource = getClass.getResource("view/DarkTheme.css")
+  var personOverviewController : Option[PersonOverviewController] = None
   /**
    * The data as an observable list of Persons.
    */
@@ -47,8 +50,10 @@ object MainApp extends JFXApp3:
 
     stage = new PrimaryStage():
       title = "AddressApp"
+      icons += new Image(getClass.getResource("/images/book.png").toExternalForm)
       scene = new Scene():
         root = roots.get
+        stylesheets = Seq(cssResource.toExternalForm)
 
     // call to display PersonOverview when app start
     showPersonOverview()
@@ -58,6 +63,7 @@ object MainApp extends JFXApp3:
     val loader = new FXMLLoader(resource)
     loader.load()
     val roots = loader.getRoot[jfxs.layout.AnchorPane]
+    personOverviewController= Option(loader.getController[PersonOverviewController])
     this.roots.get.center = roots
 
   val string1= new StringProperty("hello") //publisher
@@ -95,9 +101,10 @@ object MainApp extends JFXApp3:
       initOwner(stage)
       scene = new Scene:
         root = roots2
-
+        stylesheets = Seq(cssResource.toExternalForm)
     control.dialogStage = dialog
     control.person = person
     dialog.showAndWait()
     control.okClicked
 end MainApp
+

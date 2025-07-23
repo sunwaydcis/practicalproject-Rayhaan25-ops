@@ -14,7 +14,7 @@ import scalafx.scene.image.Image
 import scalafx.stage.{Modality, Stage}
 
 object MainApp extends JFXApp3:
-
+  Database.setupDB()
   //Window Root Pane
   var roots: Option[scalafx.scene.layout.BorderPane] = None
   var cssResource = getClass.getResource("view/DarkTheme.css")
@@ -27,15 +27,7 @@ object MainApp extends JFXApp3:
   /**
    * Constructor
    */
-  personData += new Person("Hans", "Muster")
-  personData += new Person("Ruth", "Mueller")
-  personData += new Person("Heinz", "Kurz")
-  personData += new Person("Cornelia", "Meier")
-  personData += new Person("Werner", "Meyer")
-  personData += new Person("Lydia", "Kunz")
-  personData += new Person("Anna", "Best")
-  personData += new Person("Stefan", "Meier")
-  personData += new Person("Martin", "Mueller")
+  personData ++= Person.getAllPersons
 
   override def start(): Unit =
     // transform path of RootLayout.fxml to URI for resource location.

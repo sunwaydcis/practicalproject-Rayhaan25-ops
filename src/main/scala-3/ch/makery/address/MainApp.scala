@@ -62,7 +62,7 @@ object MainApp extends JFXApp3:
   val string2 = new StringProperty("sunway") //subscriber
   val string3= new StringProperty("segi") //subscriber
   string1.onChange((a,b,c) => {
-     println("string 1 has change")
+    println("string 1 has change")
   })
   string1.onChange((a, b, c) => {
     println("string 1 has change from " + b + " to " + c)
